@@ -5,7 +5,7 @@ export * from "./defaults/formTag.js";
 export * from "./defaults/headers.js";
 export * from "./defaults/linkRelEle.js";
 export * from "./defaults/media.js";
-export * from "./defaults/symentic.js";
+export * from "./defaults/semantic.js";
 export * from "./defaults/text.js";
 export * from "./defaults/utils.js";
 export * from "./components/center.js";
