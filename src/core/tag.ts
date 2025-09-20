@@ -1,19 +1,19 @@
 export type HTMLTagName = keyof HTMLElementTagNameMap;
 export interface TagOptions {
-    id?: string;
-    class?: string | string[];
-    childs?: HTMLElement | HTMLElement[];
-    attributes?: Record<string, string | string[] | null>;
-    title?: string;
-    style?: Partial<CSSStyleDeclaration>;
-    disabled?: boolean;
-    onClick?: EventListenerOrEventListenerObject;
-    onChange?: EventListenerOrEventListenerObject;
-    onHover?: EventListenerOrEventListenerObject;
-    onBlur?: EventListenerOrEventListenerObject;
-    onload?: EventListenerOrEventListenerObject;
-    eventLinsteners?: Record<string, EventListenerOrEventListenerObject>;
-    controller?: (element: HTMLElement) => void;
+  id?: string;
+  class?: string | string[];
+  children?: HTMLElement | HTMLElement[];
+  attributes?: Record<string, string | string[] | null>;
+  title?: string;
+  style?: Partial<CSSStyleDeclaration>;
+  disabled?: boolean;
+  onClick?: EventListenerOrEventListenerObject;
+  onChange?: EventListenerOrEventListenerObject;
+  onHover?: EventListenerOrEventListenerObject;
+  onBlur?: EventListenerOrEventListenerObject;
+  onLoad?: EventListenerOrEventListenerObject;
+  eventListeners?: Record<string, EventListenerOrEventListenerObject>;
+  controller?: (element: HTMLElement) => void;
 }
 
 // export class Tag {
@@ -26,7 +26,7 @@ export interface TagOptions {
 //     }
 
 //     private createElement(): HTMLElement {
-//         const { id, class: className, childs, attributes, title, style } =
+//         const { id, class: className, children, attributes, title, style } =
 //             this.options;
 //         const classAttr = Array.isArray(className)
 //             ? className.join(" ")
@@ -49,12 +49,12 @@ export interface TagOptions {
 //                 }
 //             }
 //         }
-//         // set all childs
-//         if (childs) {
-//             if (Array.isArray(childs)) {
-//                 childs.forEach((child) => tag.appendChild(child));
+//         // set all children
+//         if (children) {
+//             if (Array.isArray(children)) {
+//                 children.forEach((child) => tag.appendChild(child));
 //             } else {
-//                 tag.appendChild(childs);
+//                 tag.appendChild(children);
 //             }
 //         }
 //         // set style
@@ -75,86 +75,90 @@ export interface TagOptions {
 //     }
 // }
 
-export const Tag = (name: HTMLTagName, options?: TagOptions): HTMLElement => {
-    const { id, class: className, childs, attributes, title, style } =
-        options ?? {};
-    const classAttr = Array.isArray(className)
-        ? className.join(" ")
-        : className;
+export const Tag = <T extends HTMLElement = HTMLElement>(
+  name: HTMLTagName,
+  options?: TagOptions
+): T => {
+  const {
+    id,
+    class: className,
+    children,
+    attributes,
+    title,
+    style,
+    disabled,
+    onClick,
+    onChange,
+    onHover,
+    onBlur,
+    onLoad,
+    eventListeners,
+    controller,
+  } = options ?? {};
+  const classAttr = Array.isArray(className) ? className.join(" ") : className;
 
-    // create tag
-    const tag = document.createElement(name);
-    // set all attributes
-    if (id) tag.id = id;
-    if (classAttr) tag.className = classAttr;
-    if (title) tag.title = title;
-    if (attributes) {
-        for (const [key, value] of Object.entries(attributes)) {
-            if (value) {
-                if (Array.isArray(value)) {
-                    tag.setAttribute(key, value.join(" "));
-                } else {
-                    tag.setAttribute(key, value);
-                }
-            }
-        }
-    }
-    // set all childs
-    if (childs) {
-        if (Array.isArray(childs)) {
-            childs.forEach((child) => tag.appendChild(child));
+  // create tag
+  const tag = document.createElement(name) as T;
+
+  // set all attributes
+  if (id) tag.id = id;
+  if (classAttr) tag.className = classAttr;
+  if (title) tag.title = title;
+  if (attributes) {
+    for (const [key, value] of Object.entries(attributes)) {
+      if (value !== null && value !== undefined) {
+        if (Array.isArray(value)) {
+          tag.setAttribute(key, value.join(" "));
         } else {
-            tag.appendChild(childs);
+          tag.setAttribute(key, value);
         }
+      }
     }
-    // set style
-    if (style) {
-        for (const [key, value] of Object.entries(style)) {
-            tag.style[key as any] = value as string;
-        }
-    }
+  }
 
-    // set disabled
-    if (options?.disabled) {
-        tag.setAttribute("disabled", "true");
+  // set all children
+  if (children) {
+    if (Array.isArray(children)) {
+      children.forEach((child) => tag.appendChild(child));
+    } else {
+      tag.appendChild(children);
     }
+  }
 
-    // set onclick event
-    if (options?.onClick) {
-        tag.addEventListener("click", options.onClick);
-    }
-    // set onChange event
-    if (options?.onChange) {
-        tag.addEventListener("change", options.onChange);
-    }
-    // set onHover event
-    if (options?.onHover) {
-        tag.addEventListener("mouseover", options.onHover);
-    }
-    // set onBlur event
-    if (options?.onBlur) {
-        tag.addEventListener("blur", options.onBlur);
-    }
-    // set onload event
-    if (options?.onload) {
-        tag.addEventListener("load", options.onload);
-    }
+  // set style
+  if (style) {
+    Object.assign(tag.style, style);
+  }
 
-    // set all event listeners
-    if (options?.eventLinsteners) {
-        for (const [key, value] of Object.entries(options.eventLinsteners)) {
-            tag.addEventListener(key, value);
-        }
+  // set disabled (use property if available)
+  if (disabled) {
+    if ("disabled" in tag) {
+      (tag as any).disabled = true;
+    } else {
+      tag.setAttribute("disabled", "true");
     }
+  }
 
-    //  ? Letting user having more control over the tag
-    if (options?.controller) {
-        options?.controller(tag);
+  // set event listeners
+  if (onClick) tag.addEventListener("click", onClick);
+  if (onChange) tag.addEventListener("change", onChange);
+  if (onHover) tag.addEventListener("mouseover", onHover);
+  if (onBlur) tag.addEventListener("blur", onBlur);
+  if (onLoad) tag.addEventListener("load", onLoad);
+
+  if (eventListeners) {
+    for (const [event, handler] of Object.entries(eventListeners)) {
+      tag.addEventListener(event, handler);
     }
+  }
 
-    return tag;
+  // Let user control the tag
+  if (controller) controller(tag);
+
+  return tag;
 };
 
 export const createTag =
-    (tag: keyof HTMLElementTagNameMap) => (options?: TagOptions): HTMLElement =>
-        Tag(tag, options);
+  (tag: HTMLTagName) =>
+  (options?: TagOptions): HTMLElement =>
+    Tag(tag, options);
