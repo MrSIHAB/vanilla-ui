@@ -1,4 +1,4 @@
-import { createTag } from "../core/tag.js";
+import { createTag } from "../core/tag.ts";
 
 // // export const Div = createTag("div");
 //// export const Span = createTag("span");
@@ -33,7 +33,7 @@ export const B = createTag("b");
 export const I = createTag("i");
 export const U = createTag("u");
 
-export const BlovkQuote = createTag("blockquote");
+export const BlockQuote = createTag("blockquote");
 export const Code = createTag("code");
 export const Pre = createTag("pre");
 export const Kbd = createTag("kbd");

@@ -1,4 +1,4 @@
-import { Tag, TagOptions } from "../core/tag.js";
+import { Tag, TagOptions } from "../core/tag.ts";
 
 // ===================  Form
 /**
@@ -21,20 +21,20 @@ import { Tag, TagOptions } from "../core/tag.js";
  * @property {function} [onInvalid] - The function to call when the form is invalid.
  */
 export interface FormOptions extends TagOptions {
-    method?: HTMLFormElement["method"];
-    action?: HTMLFormElement["action"];
-    enctype?: HTMLFormElement["enctype"];
-    target?: HTMLFormElement["target"];
-    acceptCharset?: HTMLFormElement["acceptCharset"];
-    noValidate?: boolean;
-    autoComplete?: HTMLFormElement["autocomplete"];
-    autoFocus?: boolean;
-    name?: string;
-    onSubmit?: (event: SubmitEvent) => void;
-    onReset?: (event: Event) => void;
-    onChange?: (event: Event) => void;
-    onInput?: (event: Event) => void;
-    onInvalid?: (event: Event) => void;
+  method?: HTMLFormElement["method"];
+  action?: HTMLFormElement["action"];
+  enctype?: HTMLFormElement["enctype"];
+  target?: HTMLFormElement["target"];
+  acceptCharset?: HTMLFormElement["acceptCharset"];
+  noValidate?: boolean;
+  autoComplete?: HTMLFormElement["autocomplete"];
+  autoFocus?: boolean;
+  name?: string;
+  onSubmit?: (event: SubmitEvent) => void;
+  onReset?: (event: Event) => void;
+  onChange?: (event: Event) => void;
+  onInput?: (event: Event) => void;
+  onInvalid?: (event: Event) => void;
 }
 /**
  * Creates a form element with the specified options.
@@ -61,35 +61,35 @@ export interface FormOptions extends TagOptions {
  * });
  */
 export const Form = (options: FormOptions): HTMLFormElement => {
-    const formTag = Tag("form", options) as HTMLFormElement;
-    const {
-        method,
-        action,
-        enctype,
-        target,
-        acceptCharset,
-        noValidate,
-        autoComplete,
-        autoFocus,
-        name,
-    } = options;
-    if (method) formTag.method = method;
-    if (action) formTag.action = action;
-    if (enctype) formTag.enctype = enctype;
-    if (target) formTag.target = target;
-    if (acceptCharset) formTag.acceptCharset = acceptCharset;
-    if (noValidate) formTag.noValidate = noValidate;
-    if (autoComplete) formTag.autocomplete = autoComplete;
-    if (autoFocus) formTag.autofocus = autoFocus;
-    if (name) formTag.name = name;
-    if (options.onSubmit) formTag.addEventListener("submit", options.onSubmit);
-    if (options.onReset) formTag.addEventListener("reset", options.onReset);
-    if (options.onChange) formTag.addEventListener("change", options.onChange);
-    if (options.onInput) formTag.addEventListener("input", options.onInput);
-    if (options.onInvalid) {
-        formTag.addEventListener("invalid", options.onInvalid);
-    }
-    return formTag;
+  const formTag = Tag("form", options) as HTMLFormElement;
+  const {
+    method,
+    action,
+    enctype,
+    target,
+    acceptCharset,
+    noValidate,
+    autoComplete,
+    autoFocus,
+    name,
+  } = options;
+  if (method) formTag.method = method;
+  if (action) formTag.action = action;
+  if (enctype) formTag.enctype = enctype;
+  if (target) formTag.target = target;
+  if (acceptCharset) formTag.acceptCharset = acceptCharset;
+  if (noValidate) formTag.noValidate = noValidate;
+  if (autoComplete) formTag.autocomplete = autoComplete;
+  if (autoFocus) formTag.autofocus = autoFocus;
+  if (name) formTag.name = name;
+  if (options.onSubmit) formTag.addEventListener("submit", options.onSubmit);
+  if (options.onReset) formTag.addEventListener("reset", options.onReset);
+  if (options.onChange) formTag.addEventListener("change", options.onChange);
+  if (options.onInput) formTag.addEventListener("input", options.onInput);
+  if (options.onInvalid) {
+    formTag.addEventListener("invalid", options.onInvalid);
+  }
+  return formTag;
 };
 
 // ===================  Input
@@ -99,25 +99,50 @@ export const Form = (options: FormOptions): HTMLFormElement => {
  * @extends TagOptions
  */
 export interface InputOptions extends TagOptions {
-    type?: HTMLInputElement["type"];
-    name?: HTMLInputElement["name"];
-    value?: HTMLInputElement["value"];
-    placeholder?: HTMLInputElement["placeholder"];
-    required?: boolean;
-    readOnly?: boolean;
-    min?: HTMLInputElement["min"];
-    max?: HTMLInputElement["max"];
-    minLength?: HTMLInputElement["minLength"];
-    maxLength?: HTMLInputElement["maxLength"];
-    pattern?: HTMLInputElement["pattern"];
-    size?: HTMLInputElement["size"];
-    step?: HTMLInputElement["step"];
-    autoComplete?: HTMLInputElement["autocomplete"];
-    autoFocus?: boolean;
-    accept?: HTMLInputElement["accept"];
-    onInput?: (event: Event) => void;
-    onInvalid?: (event: Event) => void;
-    onSelect?: (event: Event) => void;
+  type?:
+    | "button"
+    | "checkbox"
+    | "color"
+    | "date"
+    | "datetime"
+    | "datetime-local"
+    | "email"
+    | "file"
+    | "hidden"
+    | "image"
+    | "month"
+    | "number"
+    | "password"
+    | "radio"
+    | "range"
+    | "reset"
+    | "search"
+    | "submit"
+    | "tel"
+    | "text"
+    | "time"
+    | "url"
+    | "week";
+  name?: string;
+  value?: string;
+  placeholder?: string;
+  required?: boolean;
+  readOnly?: boolean;
+  min?: HTMLInputElement["min"];
+  max?: HTMLInputElement["max"];
+  minLength?: HTMLInputElement["minLength"];
+  maxLength?: HTMLInputElement["maxLength"];
+  pattern?: HTMLInputElement["pattern"];
+  size?: HTMLInputElement["size"];
+  step?: HTMLInputElement["step"];
+  autoComplete?: HTMLInputElement["autocomplete"];
+  autoFocus?: boolean;
+  accept?: HTMLInputElement["accept"];
+  checked?: HTMLInputElement["checked"];
+  selected?: HTMLInputElement["defaultChecked"];
+  onInput?: (event: Event) => void;
+  onInvalid?: (event: Event) => void;
+  onSelect?: (event: Event) => void;
 }
 /**
  * Creates an input element with the specified options.
@@ -153,53 +178,55 @@ export interface InputOptions extends TagOptions {
  * });
  */
 export const Input = (options: InputOptions): HTMLInputElement => {
-    const inputTag = Tag("input", options) as HTMLInputElement;
-    const {
-        type,
-        name,
-        value,
-        placeholder,
-        required,
-        disabled,
-        readOnly,
-        min,
-        max,
-        minLength,
-        maxLength,
-        pattern,
-        size,
-        step,
-        autoComplete,
-        autoFocus,
-        accept,
-    } = options;
-    if (type) inputTag.type = type;
-    if (name) inputTag.name = name;
-    if (value) inputTag.value = value;
-    if (placeholder) inputTag.placeholder = placeholder;
-    if (required) inputTag.required = required;
-    if (disabled) inputTag.disabled = disabled;
-    if (readOnly) inputTag.readOnly = readOnly;
-    if (min) inputTag.min = min;
-    if (max) inputTag.max = max;
-    if (minLength) inputTag.minLength = minLength;
-    if (maxLength) inputTag.maxLength = maxLength;
-    if (pattern) inputTag.pattern = pattern;
-    if (size) inputTag.size = size;
-    if (step) inputTag.step = step;
-    if (autoComplete) inputTag.autocomplete = autoComplete;
-    if (autoFocus) inputTag.autofocus = autoFocus;
-    if (accept) inputTag.accept = accept;
+  const inputTag = Tag<HTMLInputElement>("input", options);
+  const {
+    type,
+    name,
+    value,
+    placeholder,
+    required,
+    disabled,
+    readOnly,
+    min,
+    max,
+    minLength,
+    maxLength,
+    pattern,
+    size,
+    step,
+    autoComplete,
+    autoFocus,
+    accept,
+  } = options;
+  if (type) inputTag.type = type;
+  if (name) inputTag.name = name;
+  if (value) inputTag.value = value;
+  if (placeholder) inputTag.placeholder = placeholder;
+  if (required) inputTag.required = required;
+  if (disabled) inputTag.disabled = disabled;
+  if (readOnly) inputTag.readOnly = readOnly;
+  if (min) inputTag.min = min;
+  if (max) inputTag.max = max;
+  if (minLength) inputTag.minLength = minLength;
+  if (maxLength) inputTag.maxLength = maxLength;
+  if (pattern) inputTag.pattern = pattern;
+  if (size) inputTag.size = size;
+  if (step) inputTag.step = step;
+  if (autoComplete) inputTag.autocomplete = autoComplete;
+  if (autoFocus) inputTag.autofocus = autoFocus;
+  if (accept) inputTag.accept = accept;
+  if (options.checked) inputTag.checked = options.checked;
+  if (options.selected) inputTag.defaultChecked = options.selected;
 
-    if (options.onChange) inputTag.addEventListener("change", options.onChange);
-    if (options.onInput) inputTag.addEventListener("input", options.onInput);
-    if (options.onInvalid) {
-        inputTag.addEventListener("invalid", options.onInvalid);
-    }
-    if (options.onBlur) inputTag.addEventListener("blur", options.onBlur);
-    if (options.onSelect) inputTag.addEventListener("select", options.onSelect);
+  if (options.onChange) inputTag.addEventListener("change", options.onChange);
+  if (options.onInput) inputTag.addEventListener("input", options.onInput);
+  if (options.onInvalid) {
+    inputTag.addEventListener("invalid", options.onInvalid);
+  }
+  if (options.onBlur) inputTag.addEventListener("blur", options.onBlur);
+  if (options.onSelect) inputTag.addEventListener("select", options.onSelect);
 
-    return inputTag;
+  return inputTag;
 };
 
 // ===================  TextArea
@@ -209,20 +236,20 @@ export const Input = (options: InputOptions): HTMLInputElement => {
  * @extends TagOptions
  */
 export interface TextAreaOptions extends TagOptions {
-    name?: HTMLTextAreaElement["name"];
-    value?: HTMLTextAreaElement["value"];
-    placeholder?: HTMLTextAreaElement["placeholder"];
-    required?: boolean;
-    disabled?: boolean;
-    readOnly?: boolean;
-    rows?: HTMLTextAreaElement["rows"];
-    cols?: HTMLTextAreaElement["cols"];
-    wrap?: HTMLTextAreaElement["wrap"];
-    maxLength?: HTMLTextAreaElement["maxLength"];
-    autoComplete?: HTMLTextAreaElement["autocomplete"];
-    autoFocus?: boolean;
-    onInput?: (event: Event) => void;
-    onInvalid?: (event: Event) => void;
+  name?: HTMLTextAreaElement["name"];
+  value?: HTMLTextAreaElement["value"];
+  placeholder?: HTMLTextAreaElement["placeholder"];
+  required?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+  rows?: HTMLTextAreaElement["rows"];
+  cols?: HTMLTextAreaElement["cols"];
+  wrap?: HTMLTextAreaElement["wrap"];
+  maxLength?: HTMLTextAreaElement["maxLength"];
+  autoComplete?: HTMLTextAreaElement["autocomplete"];
+  autoFocus?: boolean;
+  onInput?: (event: Event) => void;
+  onInvalid?: (event: Event) => void;
 }
 /**
  * Creates a textarea element with the specified options.
@@ -252,44 +279,44 @@ export interface TextAreaOptions extends TagOptions {
  *      ... : ...other options
  */
 export const TextArea = (option: TextAreaOptions): HTMLTextAreaElement => {
-    const textAreaTag = Tag("textarea", option) as HTMLTextAreaElement;
-    const {
-        name,
-        value,
-        placeholder,
-        required,
-        disabled,
-        readOnly,
-        rows,
-        cols,
-        wrap,
-        maxLength,
-        autoComplete,
-        autoFocus,
-    } = option;
-    if (name) textAreaTag.name = name;
-    if (value) textAreaTag.value = value;
-    if (placeholder) textAreaTag.placeholder = placeholder;
-    if (required) textAreaTag.required = required;
-    if (disabled) textAreaTag.disabled = disabled;
-    if (readOnly) textAreaTag.readOnly = readOnly;
-    if (rows) textAreaTag.rows = rows;
-    if (cols) textAreaTag.cols = cols;
-    if (wrap) textAreaTag.wrap = wrap;
-    if (maxLength) textAreaTag.maxLength = maxLength;
-    if (autoComplete) textAreaTag.autocomplete = autoComplete;
-    if (autoFocus) textAreaTag.autofocus = autoFocus;
+  const textAreaTag = Tag("textarea", option) as HTMLTextAreaElement;
+  const {
+    name,
+    value,
+    placeholder,
+    required,
+    disabled,
+    readOnly,
+    rows,
+    cols,
+    wrap,
+    maxLength,
+    autoComplete,
+    autoFocus,
+  } = option;
+  if (name) textAreaTag.name = name;
+  if (value) textAreaTag.value = value;
+  if (placeholder) textAreaTag.placeholder = placeholder;
+  if (required) textAreaTag.required = required;
+  if (disabled) textAreaTag.disabled = disabled;
+  if (readOnly) textAreaTag.readOnly = readOnly;
+  if (rows) textAreaTag.rows = rows;
+  if (cols) textAreaTag.cols = cols;
+  if (wrap) textAreaTag.wrap = wrap;
+  if (maxLength) textAreaTag.maxLength = maxLength;
+  if (autoComplete) textAreaTag.autocomplete = autoComplete;
+  if (autoFocus) textAreaTag.autofocus = autoFocus;
 
-    if (option.onChange) {
-        textAreaTag.addEventListener("change", option.onChange);
-    }
-    if (option.onInput) textAreaTag.addEventListener("input", option.onInput);
-    if (option.onInvalid) {
-        textAreaTag.addEventListener("invalid", option.onInvalid);
-    }
-    if (option.onBlur) textAreaTag.addEventListener("blur", option.onBlur);
+  if (option.onChange) {
+    textAreaTag.addEventListener("change", option.onChange);
+  }
+  if (option.onInput) textAreaTag.addEventListener("input", option.onInput);
+  if (option.onInvalid) {
+    textAreaTag.addEventListener("invalid", option.onInvalid);
+  }
+  if (option.onBlur) textAreaTag.addEventListener("blur", option.onBlur);
 
-    return textAreaTag;
+  return textAreaTag;
 };
 
 // ===================  Label
@@ -299,9 +326,9 @@ export const TextArea = (option: TextAreaOptions): HTMLTextAreaElement => {
  * @extends TagOptions
  */
 export interface LabelOptions extends TagOptions {
-    for?: HTMLLabelElement["htmlFor"];
-    autoFocus?: boolean;
-    onFocus?: (event: FocusEvent) => void;
+  for?: HTMLLabelElement["htmlFor"];
+  autoFocus?: boolean;
+  onFocus?: (event: FocusEvent) => void;
 }
 /**
  * Creates a label element with the specified options.
@@ -310,7 +337,7 @@ export interface LabelOptions extends TagOptions {
  * @example
  * const label = Label({
  *      for: "username",
- *      childs: Input({id: "username", type: "text", name: "username"}),
+ *      children: Input({id: "username", type: "text", name: "username"}),
  *      autoFocus: true,
  *      onFocus: onFocus,
  *      onBlur: onBlur,
@@ -319,76 +346,76 @@ export interface LabelOptions extends TagOptions {
  * });
  */
 export const Label = (options: LabelOptions): HTMLLabelElement => {
-    const labelTag = Tag("label", options) as HTMLLabelElement;
-    const { for: htmlFor, autoFocus } = options;
-    if (htmlFor) labelTag.htmlFor = htmlFor;
-    if (autoFocus) labelTag.autofocus = autoFocus;
+  const labelTag = Tag("label", options) as HTMLLabelElement;
+  const { for: htmlFor, autoFocus } = options;
+  if (htmlFor) labelTag.htmlFor = htmlFor;
+  if (autoFocus) labelTag.autofocus = autoFocus;
 
-    if (options.onFocus) labelTag.addEventListener("focus", options.onFocus);
-    if (options.onBlur) labelTag.addEventListener("blur", options.onBlur);
+  if (options.onFocus) labelTag.addEventListener("focus", options.onFocus);
+  if (options.onBlur) labelTag.addEventListener("blur", options.onBlur);
 
-    return labelTag;
+  return labelTag;
 };
 
 //  =====================   Select
 export interface SelectInterface extends TagOptions {
-    childs?: undefined; // * select tag can contain Options. Not Childs
-    name: HTMLSelectElement["name"];
-    value?: HTMLSelectElement["value"];
-    required?: boolean;
-    disabled?: boolean;
-    size?: HTMLSelectElement["size"];
-    multiple?: boolean;
-    autoFocus?: boolean;
-    options?: Array<HTMLOptionElement | HTMLOptGroupElement>;
-    selectedIndex?: number;
-    onInput?: (event: Event) => void;
-    onInvalid?: (event: Event) => void;
-    onFocus?: (event: FocusEvent) => void;
-    onSelect?: (event: Event) => void;
+  children?: undefined; // * select tag can contain Options. Not Childs
+  name: HTMLSelectElement["name"];
+  value?: HTMLSelectElement["value"];
+  required?: boolean;
+  disabled?: boolean;
+  size?: HTMLSelectElement["size"];
+  multiple?: boolean;
+  autoFocus?: boolean;
+  options?: Array<HTMLOptionElement | HTMLOptGroupElement>;
+  selectedIndex?: number;
+  onInput?: (event: Event) => void;
+  onInvalid?: (event: Event) => void;
+  onFocus?: (event: FocusEvent) => void;
+  onSelect?: (event: Event) => void;
 }
-const Select = (attr: SelectInterface): HTMLSelectElement => {
-    const selectTag = Tag("select", attr) as HTMLSelectElement;
-    const {
-        name,
-        value,
-        required,
-        disabled,
-        size,
-        multiple,
-        autoFocus,
-        options,
-        selectedIndex,
-    } = attr;
+export const Select = (attr: SelectInterface): HTMLSelectElement => {
+  const selectTag = Tag("select", attr) as HTMLSelectElement;
+  const {
+    name,
+    value,
+    required,
+    disabled,
+    size,
+    multiple,
+    autoFocus,
+    options,
+    selectedIndex,
+  } = attr;
 
-    if (name) selectTag.name = name;
-    if (value) selectTag.value = value;
-    if (required) selectTag.required = required;
-    if (disabled) selectTag.disabled = disabled;
-    if (size) selectTag.size = size;
-    if (multiple) selectTag.multiple = multiple;
-    if (autoFocus) selectTag.autofocus = autoFocus;
+  if (name) selectTag.name = name;
+  if (value) selectTag.value = value;
+  if (required) selectTag.required = required;
+  if (disabled) selectTag.disabled = disabled;
+  if (size) selectTag.size = size;
+  if (multiple) selectTag.multiple = multiple;
+  if (autoFocus) selectTag.autofocus = autoFocus;
 
-    // setingup options
-    if (options) {
-        if (Array.isArray(options)) {
-            options.forEach((child) => selectTag.appendChild(child));
-        } else {
-            selectTag.appendChild(options);
-        }
+  // setting up options
+  if (options) {
+    if (Array.isArray(options)) {
+      options.forEach((child) => selectTag.appendChild(child));
+    } else {
+      selectTag.appendChild(options);
     }
-    if (selectedIndex) selectTag.selectedIndex = selectedIndex;
+  }
+  if (selectedIndex) selectTag.selectedIndex = selectedIndex;
 
-    if (attr.onChange) selectTag.addEventListener("change", attr.onChange);
-    if (attr.onInput) selectTag.addEventListener("input", attr.onInput);
-    if (attr.onInvalid) {
-        selectTag.addEventListener("invalid", attr.onInvalid);
-    }
-    if (attr.onFocus) selectTag.addEventListener("focus", attr.onFocus);
-    if (attr.onBlur) selectTag.addEventListener("blur", attr.onBlur);
-    if (attr.onSelect) selectTag.addEventListener("select", attr.onSelect);
+  if (attr.onChange) selectTag.addEventListener("change", attr.onChange);
+  if (attr.onInput) selectTag.addEventListener("input", attr.onInput);
+  if (attr.onInvalid) {
+    selectTag.addEventListener("invalid", attr.onInvalid);
+  }
+  if (attr.onFocus) selectTag.addEventListener("focus", attr.onFocus);
+  if (attr.onBlur) selectTag.addEventListener("blur", attr.onBlur);
+  if (attr.onSelect) selectTag.addEventListener("select", attr.onSelect);
 
-    return selectTag;
+  return selectTag;
 };
 
 // ===================  Option
@@ -398,16 +425,16 @@ const Select = (attr: SelectInterface): HTMLSelectElement => {
  * @extends TagOptions
  */
 export interface OptionInterface extends TagOptions {
-    value?: HTMLOptionElement["value"];
-    label?: HTMLOptionElement["label"];
-    selected?: boolean;
-    disabled?: boolean;
-    defaultSelected?: boolean;
-    autoFocus?: boolean;
-    onInput?: (event: Event) => void;
-    onInvalid?: (event: Event) => void;
-    onFocus?: (event: FocusEvent) => void;
-    for: string;
+  value?: HTMLOptionElement["value"];
+  label?: HTMLOptionElement["label"];
+  selected?: boolean;
+  disabled?: boolean;
+  defaultSelected?: boolean;
+  autoFocus?: boolean;
+  onInput?: (event: Event) => void;
+  onInvalid?: (event: Event) => void;
+  onFocus?: (event: FocusEvent) => void;
+  for: string;
 }
 
 /**
@@ -431,23 +458,17 @@ export interface OptionInterface extends TagOptions {
  * });
  */
 export const Option = (options: OptionInterface): HTMLOptionElement => {
-    const optionTag = Tag("option", options) as HTMLOptionElement;
-    const {
-        value,
-        label,
-        selected,
-        disabled,
-        defaultSelected,
-        autoFocus,
-    } = options;
-    if (value) optionTag.value = value;
-    if (label) optionTag.label = label;
-    if (selected) optionTag.selected = selected;
-    if (disabled) optionTag.disabled = disabled;
-    if (defaultSelected) optionTag.defaultSelected = defaultSelected;
-    if (autoFocus) optionTag.autofocus = autoFocus;
+  const optionTag = Tag("option", options) as HTMLOptionElement;
+  const { value, label, selected, disabled, defaultSelected, autoFocus } =
+    options;
+  if (value) optionTag.value = value;
+  if (label) optionTag.label = label;
+  if (selected) optionTag.selected = selected;
+  if (disabled) optionTag.disabled = disabled;
+  if (defaultSelected) optionTag.defaultSelected = defaultSelected;
+  if (autoFocus) optionTag.autofocus = autoFocus;
 
-    return optionTag;
+  return optionTag;
 };
 
 /**
@@ -467,11 +488,11 @@ export const Option = (options: OptionInterface): HTMLOptionElement => {
  * });
  */
 export const OptGroup = (options: OptionInterface): HTMLOptGroupElement => {
-    const optGroupTag = Tag("optgroup", options) as HTMLOptGroupElement;
-    const { label, disabled, autoFocus } = options;
-    if (label) optGroupTag.label = label;
-    if (disabled) optGroupTag.disabled = disabled;
-    if (autoFocus) optGroupTag.autofocus = autoFocus;
+  const optGroupTag = Tag("optgroup", options) as HTMLOptGroupElement;
+  const { label, disabled, autoFocus } = options;
+  if (label) optGroupTag.label = label;
+  if (disabled) optGroupTag.disabled = disabled;
+  if (autoFocus) optGroupTag.autofocus = autoFocus;
 
-    return optGroupTag;
+  return optGroupTag;
 };

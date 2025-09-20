@@ -1,4 +1,4 @@
-import { createTag } from "../core/tag.js";
+import { createTag } from "../core/tag.ts";
 
 export const Header = createTag("header");
 export const Aside = createTag("aside");

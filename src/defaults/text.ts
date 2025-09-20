@@ -1,19 +1,19 @@
-import { Tag, TagOptions } from "../core/tag.js";
+import { Tag, TagOptions } from "../core/tag.ts";
 
 export interface TextOption extends TagOptions {
-    childs: undefined;
+  children: undefined;
 }
 export const Text = (text: string, options?: TextOption): HTMLElement => {
-    //? handling childs section.
-    if (options?.childs) options.childs = undefined;
+  //? handling children section.
+  if (options?.children) options.children = undefined;
 
-    const element = Tag("span", options);
-    element.textContent = text;
-    return element;
+  const element = Tag("span", options);
+  element.textContent = text;
+  return element;
 };
 export const Span = (text: string, option?: TextOption) => Text(text, option);
 
 export const Mark = (options: TagOptions): HTMLElement => {
-    const element = Tag("mark", options);
-    return element;
+  const element = Tag("mark", options);
+  return element;
 };

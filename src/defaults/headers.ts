@@ -1,11 +1,11 @@
-import { HTMLTagName, Tag, TagOptions } from "../core/tag.js";
+import { HTMLTagName, Tag, TagOptions } from "../core/tag.ts";
 
-interface HeaderOptions extends TagOptions {
-}
+interface HeaderOptions extends TagOptions {}
 
 const createHeader =
-    (tag: HTMLTagName) => (options: HeaderOptions): HTMLElement =>
-        Tag(tag, options);
+  (tag: HTMLTagName) =>
+  (options: HeaderOptions): HTMLElement =>
+    Tag(tag, options);
 
 export const H1 = createHeader("h1");
 export const H2 = createHeader("h2");
