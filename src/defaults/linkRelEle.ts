@@ -13,7 +13,7 @@ export interface AnchorOptions extends TagOptions {
 
 //  =====================   Anchor Tag  =====================
 
-export const A = (option: AnchorOptions) => {
+export const a = (option: AnchorOptions) => {
   const anchorTag = Tag("a", option);
 
   if (option.href) {
@@ -51,7 +51,7 @@ export const A = (option: AnchorOptions) => {
   }
   return anchorTag;
 };
-export const Anchor = (option: AnchorOptions) => A(option);
+export const anchor = (option: AnchorOptions) => a(option);
 
 //  =====================   Link Tag     =====================
 export interface LinkTagOptions {
@@ -62,7 +62,7 @@ export interface LinkTagOptions {
   media?: string;
   hreflang?: string;
 }
-export const Link = (option: LinkTagOptions) => {
+export const link = (option: LinkTagOptions) => {
   const linkTag = document.createElement("link");
   if (option.href) {
     if (typeof option.href === "string") {
@@ -103,7 +103,7 @@ export interface MetaTagOptions extends TagOptions {
   lang?: string;
   dir?: "ltr" | "rtl" | "auto";
 }
-export const Meta = (option: MetaTagOptions) => {
+export const meta = (option: MetaTagOptions) => {
   const metaTag = Tag("meta", option);
   if (option.name) {
     metaTag.setAttribute("name", option.name);
@@ -134,4 +134,4 @@ export const Meta = (option: MetaTagOptions) => {
   }
   return metaTag;
 };
-export const MetaTag = (option: MetaTagOptions) => Meta(option);
+export const metaTag = (option: MetaTagOptions) => meta(option);

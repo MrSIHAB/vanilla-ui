@@ -11,9 +11,9 @@ export const Text = (text: string, options?: TextOption): HTMLElement => {
   element.textContent = text;
   return element;
 };
-export const Span = (text: string, option?: TextOption) => Text(text, option);
+export const span = (text: string, option?: TextOption) => Text(text, option);
 
-export const Mark = (options: TagOptions): HTMLElement => {
+export const mark = (options: TagOptions): HTMLElement => {
   const element = Tag("mark", options);
   return element;
 };

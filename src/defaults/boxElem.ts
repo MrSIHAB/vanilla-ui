@@ -1,3 +1,4 @@
-import { createTag, TagOptions } from "../core/tag.ts";
+import { createTag } from "../core/tag.ts";
 
-export const Div = createTag("div");
+export const div = createTag("div");
+export const container = createTag("div");

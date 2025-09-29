@@ -1,9 +1,9 @@
 import { createTag } from "../core/tag.ts";
 
-export const Header = createTag("header");
-export const Aside = createTag("aside");
-export const Nav = createTag("nav");
-export const Article = createTag("article");
-export const Footer = createTag("footer");
-export const Section = createTag("section");
-export const Main = createTag("main");
+export const header = createTag("header");
+export const aside = createTag("aside");
+export const nav = createTag("nav");
+export const article = createTag("article");
+export const footer = createTag("footer");
+export const section = createTag("section");
+export const main = createTag("main");

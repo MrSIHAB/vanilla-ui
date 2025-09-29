@@ -8,7 +8,7 @@ export interface ImageInterface extends TagOptions {
 }
 
 //  ====================    ImageTag =============
-export const Image = (options?: ImageInterface): HTMLImageElement => {
+export const image = (options?: ImageInterface): HTMLImageElement => {
   const element = Tag("img", options) as HTMLImageElement;
 
   if (!options) return element;
@@ -25,13 +25,13 @@ export const Image = (options?: ImageInterface): HTMLImageElement => {
 
   return element;
 };
-export const Img = (Option: ImageInterface) => Image(Option);
+export const img = (Option: ImageInterface) => image(Option);
 
 //  ====================    Video Tag =============
 export interface VideoInterface extends TagOptions {
   src: string | URL;
 }
-export const Video = (options?: VideoInterface): HTMLVideoElement => {
+export const video = (options?: VideoInterface): HTMLVideoElement => {
   const element = Tag("video", options) as HTMLVideoElement;
 
   if (!options) return element;

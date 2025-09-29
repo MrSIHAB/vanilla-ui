@@ -7,7 +7,7 @@ export interface ButtonOptions extends TagOptions {
   form?: string;
 }
 
-export const Button = (options: ButtonOptions): HTMLButtonElement => {
+export const button = (options: ButtonOptions): HTMLButtonElement => {
   const tag = Tag<HTMLButtonElement>("button", options);
 
   // add properties
@@ -18,3 +18,5 @@ export const Button = (options: ButtonOptions): HTMLButtonElement => {
 
   return tag;
 };
+
+export const btn = (options: ButtonOptions) => button(options);

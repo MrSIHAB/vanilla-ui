@@ -1,21 +1,20 @@
-import { TagOptions } from "../core/tag.js";
-import { Div } from "../main.js";
+import { div } from "../main.ts";
 
 export interface CenterOptions {
-    childs: HTMLElement | HTMLElement[];
+  children: HTMLElement | HTMLElement[];
 }
 
-export const Center = ({ childs }: CenterOptions) => {
-    return Div({
-        style: {
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-        },
-        childs: Div({
-            childs: childs,
-        }),
-    });
+export const Center = ({ children }: CenterOptions) => {
+  return div({
+    style: {
+      height: "100%",
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    children: div({
+      children: children,
+    }),
+  });
 };

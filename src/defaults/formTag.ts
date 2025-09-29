@@ -60,7 +60,7 @@ export interface FormOptions extends TagOptions {
  *     ... : ...other options
  * });
  */
-export const Form = (options: FormOptions): HTMLFormElement => {
+export const form = (options: FormOptions): HTMLFormElement => {
   const formTag = Tag("form", options) as HTMLFormElement;
   const {
     method,
@@ -177,7 +177,7 @@ export interface InputOptions extends TagOptions {
  *     ... : ...other options
  * });
  */
-export const Input = (options: InputOptions): HTMLInputElement => {
+export const input = (options: InputOptions): HTMLInputElement => {
   const inputTag = Tag<HTMLInputElement>("input", options);
   const {
     type,
@@ -278,7 +278,7 @@ export interface TextAreaOptions extends TagOptions {
  *      style: {color: blue}
  *      ... : ...other options
  */
-export const TextArea = (option: TextAreaOptions): HTMLTextAreaElement => {
+export const textArea = (option: TextAreaOptions): HTMLTextAreaElement => {
   const textAreaTag = Tag("textarea", option) as HTMLTextAreaElement;
   const {
     name,
@@ -345,7 +345,7 @@ export interface LabelOptions extends TagOptions {
  *      ... : ...other options
  * });
  */
-export const Label = (options: LabelOptions): HTMLLabelElement => {
+export const label = (options: LabelOptions): HTMLLabelElement => {
   const labelTag = Tag("label", options) as HTMLLabelElement;
   const { for: htmlFor, autoFocus } = options;
   if (htmlFor) labelTag.htmlFor = htmlFor;
@@ -374,7 +374,7 @@ export interface SelectInterface extends TagOptions {
   onFocus?: (event: FocusEvent) => void;
   onSelect?: (event: Event) => void;
 }
-export const Select = (attr: SelectInterface): HTMLSelectElement => {
+export const select = (attr: SelectInterface): HTMLSelectElement => {
   const selectTag = Tag("select", attr) as HTMLSelectElement;
   const {
     name,
@@ -457,7 +457,7 @@ export interface OptionInterface extends TagOptions {
  *      for: "option-1",
  * });
  */
-export const Option = (options: OptionInterface): HTMLOptionElement => {
+export const option = (options: OptionInterface): HTMLOptionElement => {
   const optionTag = Tag("option", options) as HTMLOptionElement;
   const { value, label, selected, disabled, defaultSelected, autoFocus } =
     options;
@@ -487,7 +487,7 @@ export const Option = (options: OptionInterface): HTMLOptionElement => {
  *      onBlur: onBlur,
  * });
  */
-export const OptGroup = (options: OptionInterface): HTMLOptGroupElement => {
+export const optGroup = (options: OptionInterface): HTMLOptGroupElement => {
   const optGroupTag = Tag("optgroup", options) as HTMLOptGroupElement;
   const { label, disabled, autoFocus } = options;
   if (label) optGroupTag.label = label;

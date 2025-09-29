@@ -7,9 +7,9 @@ const createHeader =
   (options: HeaderOptions): HTMLElement =>
     Tag(tag, options);
 
-export const H1 = createHeader("h1");
-export const H2 = createHeader("h2");
-export const H3 = createHeader("h3");
-export const H4 = createHeader("h4");
-export const H5 = createHeader("h5");
-export const H6 = createHeader("h6");
+export const h1 = createHeader("h1");
+export const h2 = createHeader("h2");
+export const h3 = createHeader("h3");
+export const h4 = createHeader("h4");
+export const h5 = createHeader("h5");
+export const h6 = createHeader("h6");
