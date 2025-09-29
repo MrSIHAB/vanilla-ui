@@ -40,6 +40,106 @@ Ok, if you have any confusion, let's see some examples and comparison:
 
 ## Examples:
 
-```javascript
+### Basic Hello world!
+
+What you write in **Vanilla-UI :**
+
+```js
 // Vanilla-UI
+
+h1({
+  children: text("Hello world!"),
+});
+```
+
+**Behind The scene**, this what is happening :
+
+```javascript
+// JavaScript
+
+var h1 = document.createElement("h1");
+var text = document.createElement("span");
+text.textContent = "Hello World!";
+h1.appendChild(text);
+```
+
+Same thing in HTML :
+
+```html
+<!-- HTML -->
+<h1>
+  <span>Hello World!</span>
+</h1>
+```
+
+### A complex example:
+
+A button with some styles and click event listener:
+
+```html
+<!-- HTML, CSS and JavaScript -->
+<style>
+  .btn {
+    color: white;
+    background: #0077ff;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 22px;
+    border-radius: 7px; /* Semi Rounded */
+  }
+</style>
+
+<button class="btn">Follow</button>
+
+<script>
+  document.querySelector(".btn").addEventListener("click", async (e) => {
+    // Follow logic ....
+
+    this.textContent = "Following";
+    alert("Thanks for following");
+  });
+</script>
+```
+
+```js
+// Only using JavaScript
+
+const button = document.createElement("button");
+
+button.textContent = "Follow";
+button.style.color = "white";
+button.style.background = "#0077ff";
+button.style.padding = "10px 15px";
+button.style.fontWeight = "bold";
+button.style.fontSize = "22px";
+button.style.borderRadius = "7px";
+
+button.onClick((e) => {
+  // Follow logic ....
+
+  button.textContent = "Following";
+  alert("Thanks for following");
+});
+```
+
+```js
+// With the help of vanilla-UI
+
+button({
+  style: {
+    color: "white",
+    background: "#0077ff",
+    padding: "10px 15px",
+    fontWeight: "bold",
+    fontSize: "22px",
+    borderRadius: "7px",
+  },
+  onClick: (e) => {
+    // follow logic ...
+
+    e.textContent = "following";
+    alert("Thanks for following");
+  },
+  children: Text("Follow"),
+});
 ```
