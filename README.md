@@ -9,7 +9,7 @@
 <!-- * Badges -->
 </div>
 
-## Introduction
+# Introduction
 
 Vanilla UI is build for reducing the complexity of many javascript framework for
 simpler projects. This framework has a back story. You can know it
@@ -20,6 +20,36 @@ TSX. Instead it is vanilla. Pure vanilla.
 The basic theory is that, **_"This framework gives you some functions to create HTML tags or elements."_** _And you can provide additional information while creating the element. such as attributes, class, id, styles, child, parent, eventListener etc._
 
 > It doesn't compile or bundle or creates bridge between two languages, it's the core javascript with typescript's type safety.
+
+# Import
+
+I published the package in JSR. So, there are multiple options available for you. You can choose any of them.
+
+- esm :
+
+  ```js
+  import { ... } from "https://esm.sh/jsr/@eigfa/vanilla-ui";
+  ```
+
+- Deno + jsr (recommended) :
+
+  ```js
+  import { ... } from "jsr:@eigfa/vanilla-ui"
+  ```
+
+  If you have experience of using Deno, You may like this. And you require a additional `bundle` steps in this case.  
+  (`deno bundle <MAIN>.ts -o <OUTPUT>.js`)(`deno bundle --help` for more info)
+
+  If you do not know about Deno, follow These steps :
+
+  - Install Deno. It's a JavaScript and TypeScript Runtime. Alternative to Nodejs and Developed by Node.js Creator Ryan Dahl.
+  - Install Deno vs-code extension.
+  - In your project directory, run the command `deno init`.
+  - Now run this command to install vanilla-ui to your project. (`deno install jsr:@eigfa/vanilla-ui`)
+  - Now you can access the vanilla-ui package from any typescript and javascript file in the project directory. (`import { ... } from "eigfa/vanilla-ui"`)
+  - After everything, you have to bundle the scripts to a specific file. (ex.
+    `deno bundle main.ts -o output/script.js`).
+  - Link the `output/script.js` file in the `index.html` file.
 
 ## Back Story
 
@@ -38,7 +68,7 @@ That's it.
 
 Ok, if you have any confusion, let's see some examples and comparison:
 
-## Examples:
+## Quick Overview:
 
 ### Basic Hello world!
 
@@ -143,3 +173,59 @@ button({
   children: Text("Follow"),
 });
 ```
+
+## Description
+
+Vanilla Ui provides you some `functions with the name of HTML elements`. Each time, you call a function, you can provide additional properties in a object and the function will return an `HTML Element`. That's it.  
+In addition, you can make custom elements same as you do in Flutter and React. Plus, some of you can publish this to any package manager. Ex, NMP, JSR.  
+You can make those functions yourself. I already told you that what it does in background at the top. But why would you do if the same thing is already available and being maintained. It's up to you. Because I mainly made it for myself. To prevent copy coding. _I believe this is more productive than coding in direct HTML (: Personal Opinion)_.
+
+I have added some more options like `onClick`, `onChange`, `onLoad`, `onHover`, and `onBlur` event listener by default. So, you can directly set those properties while creating the Element.
+Additionally, I have added another property `eventListener`. Here you can set all the eventListener as an objects.
+
+There is a property `children`. Here you can provide a single Element or a list of Elements.
+It does the `appendChild` operation in the background. This helps you to make Element tree and gives you more productive code. Similar to Flutter - React.
+
+Now, you may need to do something with an specific Element without removing it from the Element tree. Since this framework is in raw level, you can do it multiple ways. You probably thinking about some methods already. Do whatever you feel good. But I will tell you that one method that I am providing you. You can find a property called `controller`. It expects a function. And in first `parameter`, you will get the `element`. You can do anything with the element as you do after creating or grabbing an HTML Elements. This option exist to give you complete freedom. Also, I can make some mistakes and miss something. So, that's another reason of it's existence.
+
+#### Run Function.
+
+There is a `Run(elementTree)` function from `Vanilla-UI`. It's not a HTML Element. The `Run` requires a element or the Element tree in parameter. And it
+Appends the Element tree into Body Element.  
+You can optionally pass the root element's `Id` in second parameter of `Run` function. In this case, it will append the tree into the Root Element. And won't do anything with body element.
+
+<!-- # Some Examples -->
+<!--
+### Hello World!
+
+```html
+<!--  Basic HTML Setup -- >
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body></body>
+  <script src="script.js" type="module"></script>
+</html>
+```
+
+```js
+import { Run, h1, text } from "https://esm.sh/jsr/@eigfa/vanilla-ui";
+
+Run(
+  h1({
+    children: text("Hello World!"),
+  })
+);
+
+// Let's break down everything.
+// You setup the basic index.html file. And link the javascript file.
+// You import Run, h1, and text from vanilla-ui package
+//
+// You called the Run function.
+// Provide the h1 element in the Run function.
+// Provide a text element with a string as child of h1 element
+``` -->
+
+# Contribution
+
+Any contribution will be highly helpful for this package.
