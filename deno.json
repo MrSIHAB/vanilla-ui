@@ -12,9 +12,9 @@
   "repository": "https://github.com/mrsihab/vanilla-ui",
   "license": "MIT",
   "exports": "./mod.ts",
-  "include": ["mod.ts", "src/**/*.ts", "README.md", "LICENSE"],
-  "exclude": ["test/**/*", "build/**/*", "*.test.ts", "*.spec.ts"],
+  "include": ["mod.ts", "src/", "README.md", "LICENSE"],
+  "exclude": ["test/", "build/", "*.test.ts"],
   "publish": {
-    "include": ["mod.ts", "src/**/*.ts", "README.md", "LICENSE"]
+    "include": ["mod.ts", "src/", "README.md", "LICENSE"]
   }
 }
