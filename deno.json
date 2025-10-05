@@ -8,7 +8,7 @@
   "description": "A TypeScript library for creating vanilla JavaScript DOM elements with a functional API",
   "repository": "https://github.com/mrsihab/vanilla-ui",
   "license": "MIT",
-  "exports": "mod.ts",
+  "exports": "./mod.ts",
   "publish": {
     "include": ["mod.ts", "src/", "README.md", "LICENSE"]
   }
