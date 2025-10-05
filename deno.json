@@ -3,9 +3,6 @@
     "build": "deno bundle main.ts -o build/vanilla-ui.js --platform=browser",
     "bundle": "deno task build"
   },
-  "imports": {
-    "@std/assert": "jsr:@std/assert@1"
-  },
   "name": "@eigfa/vanilla-ui",
   "version": "0.1.0",
   "description": "A TypeScript library for creating vanilla JavaScript DOM elements with a functional API",
