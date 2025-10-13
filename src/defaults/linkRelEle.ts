@@ -1,4 +1,4 @@
-import { Tag, TagOptions } from "../core/tag.ts";
+import { Tag, type TagOptions } from "../core/tag.ts";
 
 export interface AnchorOptions extends TagOptions {
   href: string | URL | URLSearchParams;
@@ -13,8 +13,8 @@ export interface AnchorOptions extends TagOptions {
 
 //  =====================   Anchor Tag  =====================
 
-export const a = (option: AnchorOptions) => {
-  const anchorTag = Tag("a", option);
+export const a = (option: AnchorOptions): HTMLAnchorElement => {
+  const anchorTag = Tag<HTMLAnchorElement>("a", option);
 
   if (option.href) {
     if (typeof option.href === "string") {
@@ -51,27 +51,21 @@ export const a = (option: AnchorOptions) => {
   }
   return anchorTag;
 };
-export const anchor = (option: AnchorOptions) => a(option);
+export const anchor = (option: AnchorOptions): HTMLAnchorElement => a(option);
 
 //  =====================   Link Tag     =====================
-export interface LinkTagOptions {
-  href?: string | URL | URLSearchParams;
+export interface LinkTagOptions extends Partial<HTMLLinkElement> {
+  href?: string;
   rel?: string;
   type?: string;
-  sizes?: string;
+  sizes?: DOMTokenList;
   media?: string;
   hreflang?: string;
 }
-export const link = (option: LinkTagOptions) => {
+export const link = (option: LinkTagOptions): HTMLLinkElement => {
   const linkTag = document.createElement("link");
   if (option.href) {
-    if (typeof option.href === "string") {
-      linkTag.setAttribute("href", option.href);
-    } else if (option.href instanceof URL) {
-      linkTag.setAttribute("href", option.href.toString());
-    } else if (option.href instanceof URLSearchParams) {
-      linkTag.setAttribute("href", option.href.toString());
-    }
+    linkTag.setAttribute("href", option.href);
   }
   if (option.rel) {
     linkTag.setAttribute("rel", option.rel);
@@ -80,7 +74,7 @@ export const link = (option: LinkTagOptions) => {
     linkTag.setAttribute("type", option.type);
   }
   if (option.sizes) {
-    linkTag.setAttribute("sizes", option.sizes);
+    linkTag.sizes = option.sizes.toString();
   }
   if (option.media) {
     linkTag.setAttribute("media", option.media);
@@ -103,8 +97,8 @@ export interface MetaTagOptions extends TagOptions {
   lang?: string;
   dir?: "ltr" | "rtl" | "auto";
 }
-export const meta = (option: MetaTagOptions) => {
-  const metaTag = Tag("meta", option);
+export const meta = (option: MetaTagOptions): HTMLMetaElement => {
+  const metaTag = Tag<HTMLMetaElement>("meta", option);
   if (option.name) {
     metaTag.setAttribute("name", option.name);
   }
@@ -134,4 +128,5 @@ export const meta = (option: MetaTagOptions) => {
   }
   return metaTag;
 };
-export const metaTag = (option: MetaTagOptions) => meta(option);
+export const metaTag = (option: MetaTagOptions): HTMLMetaElement =>
+  meta(option);

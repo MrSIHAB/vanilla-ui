@@ -1,9 +1,10 @@
 import { createTag } from "../core/tag.ts";
+import type { Func } from "../core/type.ts";
 
-export const header = createTag("header");
-export const aside = createTag("aside");
-export const nav = createTag("nav");
-export const article = createTag("article");
-export const footer = createTag("footer");
-export const section = createTag("section");
-export const main = createTag("main");
+export const header: Func<HTMLElement> = createTag("header");
+export const aside: Func<HTMLElement> = createTag("aside");
+export const nav: Func<HTMLElement> = createTag("nav");
+export const article: Func<HTMLElement> = createTag("article");
+export const footer: Func<HTMLElement> = createTag("footer");
+export const section: Func<HTMLElement> = createTag("section");
+export const main: Func<HTMLElement> = createTag("main");

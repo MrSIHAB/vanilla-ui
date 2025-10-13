@@ -98,7 +98,7 @@ export const Tag = <T extends HTMLElement = HTMLElement>(
   const classAttr = Array.isArray(className) ? className.join(" ") : className;
 
   // create tag
-  const tag = document.createElement(name) as T;
+  const tag: T = document.createElement(name) as T;
 
   // set all attributes
   if (id) tag.id = id;
@@ -133,7 +133,7 @@ export const Tag = <T extends HTMLElement = HTMLElement>(
   // set disabled (use property if available)
   if (disabled) {
     if ("disabled" in tag) {
-      (tag as any).disabled = true;
+      tag.disabled = true;
     } else {
       tag.setAttribute("disabled", "true");
     }
@@ -159,6 +159,6 @@ export const Tag = <T extends HTMLElement = HTMLElement>(
 };
 
 export const createTag =
-  (tag: HTMLTagName) =>
-  (options?: TagOptions): HTMLElement =>
-    Tag(tag, options);
+  <T extends HTMLElement = HTMLElement>(tag: HTMLTagName) =>
+  (options?: TagOptions): T =>
+    Tag<T>(tag, options);

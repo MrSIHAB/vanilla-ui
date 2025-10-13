@@ -1,4 +1,4 @@
-import { Tag, TagOptions } from "../core/tag.ts";
+import { Tag, type TagOptions } from "../core/tag.ts";
 
 // ===================  Form
 /**
@@ -359,7 +359,7 @@ export const label = (options: LabelOptions): HTMLLabelElement => {
 
 //  =====================   Select
 export interface SelectInterface extends TagOptions {
-  children?: undefined; // * select tag can contain Options. Not Childs
+  children?: undefined; // * select tag can contain Options. Not Children
   name: HTMLSelectElement["name"];
   value?: HTMLSelectElement["value"];
   required?: boolean;
@@ -375,7 +375,7 @@ export interface SelectInterface extends TagOptions {
   onSelect?: (event: Event) => void;
 }
 export const select = (attr: SelectInterface): HTMLSelectElement => {
-  const selectTag = Tag("select", attr) as HTMLSelectElement;
+  const selectTag = Tag<HTMLSelectElement>("select", attr);
   const {
     name,
     value,
@@ -458,7 +458,7 @@ export interface OptionInterface extends TagOptions {
  * });
  */
 export const option = (options: OptionInterface): HTMLOptionElement => {
-  const optionTag = Tag("option", options) as HTMLOptionElement;
+  const optionTag = Tag<HTMLOptionElement>("option", options);
   const { value, label, selected, disabled, defaultSelected, autoFocus } =
     options;
   if (value) optionTag.value = value;
@@ -488,7 +488,7 @@ export const option = (options: OptionInterface): HTMLOptionElement => {
  * });
  */
 export const optGroup = (options: OptionInterface): HTMLOptGroupElement => {
-  const optGroupTag = Tag("optgroup", options) as HTMLOptGroupElement;
+  const optGroupTag = Tag<HTMLOptGroupElement>("optgroup", options);
   const { label, disabled, autoFocus } = options;
   if (label) optGroupTag.label = label;
   if (disabled) optGroupTag.disabled = disabled;

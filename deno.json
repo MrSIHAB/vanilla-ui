@@ -1,9 +1,36 @@
 {
   "tasks": {
-    "build": "deno bundle main.ts -o build/vanilla-ui.js --platform=browser",
-    "bundle": "deno task build"
+    "bundle": "deno bundle main.ts -o build/vanilla-ui.js --platform=browser",
+    "dev": "deno task bundle --watch",
+    "build": "deno task bundle --minify"
   },
-  "imports": {
-    "@std/assert": "jsr:@std/assert@1"
+  "compilerOptions": {
+    "lib": ["ESNext", "dom", "deno.dom", "ES2020"]
+  },
+  "name": "@eigfa/vanilla-ui",
+  "version": "0.1.0",
+  "description": "A TypeScript library for creating vanilla JavaScript DOM elements with a functional API",
+  "repository": "https://github.com/mrsihab/vanilla-ui",
+  "license": "MIT",
+  "exports": {
+    ".": "./mod.ts",
+    "run": "./src/run.ts",
+    "box-elements": "./src/defaults/boxElem.ts",
+    "button": "./src/defaults/btn.ts",
+    "form": "./src/defaults/formTag.ts",
+    "header": "./src/defaults/headers.ts",
+    "link": "./src/defaults/linkRelEle.ts",
+    "media": "./src/defaults/media.ts",
+    "semantic": "./src/defaults/semantic.ts",
+    "text": "./src/defaults/text.ts",
+    "utils": "./src/defaults/utils.ts",
+    "tag": "./src/core/tag.ts",
+    "component": "./src/components/index.ts",
+    "component/center": "./src/components/center.ts"
+  },
+  "include": ["mod.ts", "src/**/*.ts", "README.md", "LICENSE"],
+  "exclude": [".gitignore", "test/", "build/", ".vscode/", ".github/"],
+  "publish": {
+    "include": ["mod.ts", "src/", "README.md", "LICENSE"]
   }
 }

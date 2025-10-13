@@ -8,7 +8,7 @@ export const Run = (
   body.style.padding = "0";
   body.style.boxSizing = "border-box";
 
-  const rootElement = root ? document.getElementById(root) : body;
+  const rootElement = root ? document.querySelector(root) : body;
   if (!rootElement)
     throw new Error(`Root element with id "#${root}" not found.`);
 

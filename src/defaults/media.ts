@@ -1,4 +1,4 @@
-import { Tag, TagOptions } from "../core/tag.ts";
+import { Tag, type TagOptions } from "../core/tag.ts";
 
 export interface ImageInterface extends TagOptions {
   src: string | URL;

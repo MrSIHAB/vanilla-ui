@@ -4,10 +4,25 @@
   "description": "A TypeScript library for creating vanilla JavaScript DOM elements with a functional API",
   "repository": "https://github.com/mrsihab/vanilla-ui",
   "license": "MIT",
-  "exports": "./mod.ts",
+  "exports": {
+    ".": "./mod.ts",
+    "run": "./src/run.ts",
+    "box-elements": "./src/defaults/boxElem.ts",
+    "button": "./src/defaults/btn.ts",
+    "form": "./src/defaults/formTag.ts",
+    "header": "./src/defaults/headers.ts",
+    "link": "./src/defaults/linkRelEle.ts",
+    "media": "./src/defaults/media.ts",
+    "semantic": "./src/defaults/semantic.ts",
+    "text": "./src/defaults/text.ts",
+    "utils": "./src/defaults/utils.ts",
+    "tag": "./src/core/tag.ts",
+    "component": "./src/components/index.ts",
+    "component/center": "./src/components/center.ts"
+  },
   "include": ["mod.ts", "src/**/*.ts", "README.md", "LICENSE"],
-  "exclude": ["test/**/*", "build/**/*", "*.test.ts", "*.spec.ts"],
+  "exclude": [".gitignore", "test/", "build/", ".vscode/", ".github/"],
   "publish": {
-    "include": ["mod.ts", "src/**/*.ts", "README.md", "LICENSE"]
+    "include": ["mod.ts", "src/", "README.md", "LICENSE"]
   }
 }

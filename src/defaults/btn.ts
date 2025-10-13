@@ -1,4 +1,4 @@
-import { Tag, TagOptions } from "../core/tag.ts";
+import { Tag, type TagOptions } from "../core/tag.ts";
 
 export interface ButtonOptions extends TagOptions {
   type?: "button" | "submit" | "reset";
@@ -19,4 +19,5 @@ export const button = (options: ButtonOptions): HTMLButtonElement => {
   return tag;
 };
 
-export const btn = (options: ButtonOptions) => button(options);
+export const btn = (options: ButtonOptions): HTMLButtonElement =>
+  button(options);

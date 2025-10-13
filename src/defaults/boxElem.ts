@@ -1,4 +1,6 @@
-import { createTag } from "../core/tag.ts";
+import { createTag, type TagOptions } from "../core/tag.ts";
 
-export const div = createTag("div");
-export const container = createTag("div");
+export const div: (options?: TagOptions) => HTMLDivElement =
+  createTag<HTMLDivElement>("div");
+export const container: (options?: TagOptions) => HTMLDivElement =
+  createTag<HTMLDivElement>("div");
