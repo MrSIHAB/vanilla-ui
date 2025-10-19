@@ -13,7 +13,7 @@ export const Text = (text: string, options?: TextOption): HTMLSpanElement => {
 };
 export const span: (text: string, options?: TextOption) => HTMLSpanElement = (
   text: string,
-  option?: TextOption
+  option?: TextOption,
 ) => Text(text, option);
 
 export const mark = (options: TagOptions): HTMLElement => {

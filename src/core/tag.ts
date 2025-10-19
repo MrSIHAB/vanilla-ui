@@ -77,7 +77,7 @@ export interface TagOptions {
 
 export const Tag = <T extends HTMLElement = HTMLElement>(
   name: HTMLTagName,
-  options?: TagOptions
+  options?: TagOptions,
 ): T => {
   const {
     id,
@@ -160,5 +160,4 @@ export const Tag = <T extends HTMLElement = HTMLElement>(
 
 export const createTag =
   <T extends HTMLElement = HTMLElement>(tag: HTMLTagName) =>
-  (options?: TagOptions): T =>
-    Tag<T>(tag, options);
+  (options?: TagOptions): T => Tag<T>(tag, options);

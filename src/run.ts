@@ -1,6 +1,6 @@
 export const Run = (
   element: HTMLElement | HTMLElement[],
-  root?: string
+  root?: string,
 ): void => {
   // Reset default body styles
   const body = document.body;
@@ -9,8 +9,9 @@ export const Run = (
   body.style.boxSizing = "border-box";
 
   const rootElement = root ? document.querySelector(root) : body;
-  if (!rootElement)
+  if (!rootElement) {
     throw new Error(`Root element with id "#${root}" not found.`);
+  }
 
   if (Array.isArray(element)) {
     element.forEach((elem) => {

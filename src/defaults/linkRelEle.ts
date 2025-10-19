@@ -34,7 +34,7 @@ export const a = (option: AnchorOptions): HTMLAnchorElement => {
   if (option.download) {
     anchorTag.setAttribute(
       "download",
-      option.download === true ? "" : option.download
+      option.download === true ? "" : option.download,
     );
   }
   if (option.type) {
