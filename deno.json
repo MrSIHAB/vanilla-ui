@@ -1,29 +1,36 @@
 {
-  "tasks": {
-    "bundle": "deno bundle main.ts -o build/vanilla-ui.js --platform=browser",
-    "dev": "deno task bundle --watch",
-    "build": "deno task bundle --minify"
-  },
   "name": "@eigfa/vanilla-ui",
   "version": "0.1.0",
   "description": "A TypeScript library for creating vanilla JavaScript DOM elements with a functional API",
   "repository": "https://github.com/mrsihab/vanilla-ui",
   "license": "MIT",
+  "tasks": {
+    "bundle": "deno bundle main.ts -o build/vanilla-ui.js --platform=browser",
+    "dev": "deno task bundle --watch",
+    "build": "deno task bundle --minify",
+    "check": ""
+  },
+  "compilerOptions": {
+    "erasableSyntaxOnly": true,
+    "lib": ["dom", "esnext", "es2020", "es5"],
+    "module": "esnext",
+    "noImplicitOverride": true
+  },
   "exports": {
     ".": "./mod.ts",
-    "run": "./src/run.ts",
-    "box-elements": "./src/defaults/boxElem.ts",
-    "button": "./src/defaults/btn.ts",
-    "form": "./src/defaults/formTag.ts",
-    "header": "./src/defaults/headers.ts",
-    "link": "./src/defaults/linkRelEle.ts",
-    "media": "./src/defaults/media.ts",
-    "semantic": "./src/defaults/semantic.ts",
-    "text": "./src/defaults/text.ts",
-    "utils": "./src/defaults/utils.ts",
-    "tag": "./src/core/tag.ts",
-    "component": "./src/components/index.ts",
-    "component/center": "./src/components/center.ts"
+    "./run": "./src/run.ts",
+    "./box-elements": "./src/defaults/boxElem.ts",
+    "./button": "./src/defaults/btn.ts",
+    "./form": "./src/defaults/formTag.ts",
+    "./header": "./src/defaults/headers.ts",
+    "./link": "./src/defaults/linkRelEle.ts",
+    "./media": "./src/defaults/media.ts",
+    "./semantic": "./src/defaults/semantic.ts",
+    "./text": "./src/defaults/text.ts",
+    "./utils": "./src/defaults/utils.ts",
+    "./tag": "./src/core/tag.ts",
+    "./component": "./src/components/index.ts",
+    "./component/center": "./src/components/center.ts"
   },
   "publish": {
     "include": ["mod.ts", "src/", "README.md", "LICENSE"]
