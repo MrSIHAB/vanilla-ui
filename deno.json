@@ -4,9 +4,6 @@
     "dev": "deno task bundle --watch",
     "build": "deno task bundle --minify"
   },
-  "compilerOptions": {
-    "lib": ["ESNext", "dom", "deno.dom", "ES2020"]
-  },
   "name": "@eigfa/vanilla-ui",
   "version": "0.1.0",
   "description": "A TypeScript library for creating vanilla JavaScript DOM elements with a functional API",
@@ -28,8 +25,6 @@
     "component": "./src/components/index.ts",
     "component/center": "./src/components/center.ts"
   },
-  "include": ["mod.ts", "src/**/*.ts", "README.md", "LICENSE"],
-  "exclude": [".gitignore", "test/", "build/", ".vscode/", ".github/"],
   "publish": {
     "include": ["mod.ts", "src/", "README.md", "LICENSE"]
   }
