@@ -1,9 +1,9 @@
 {
   "name": "@eigfa/vanilla-ui",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "A TypeScript library for creating vanilla JavaScript DOM elements with a functional API",
   "keywords": [
-    "framwork",
+    "framework",
     "ui",
     "html-element"
   ],
