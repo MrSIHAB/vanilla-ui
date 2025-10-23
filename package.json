@@ -1,0 +1,28 @@
+{
+  "name": "@eigfa/vanilla-ui",
+  "version": "1.0.0",
+  "description": "A TypeScript library for creating vanilla JavaScript DOM elements with a functional API",
+  "keywords": [
+    "framwork",
+    "ui",
+    "html-element"
+  ],
+  "homepage": "https://github.com/MrSIHAB/vanilla-ui#readme",
+  "bugs": {
+    "url": "https://github.com/MrSIHAB/vanilla-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrSIHAB/vanilla-ui.git"
+  },
+  "license": "MIT",
+  "author": "MrSIHAB",
+  "type": "module",
+  "main": "mod.ts",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
