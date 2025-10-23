@@ -24,5 +24,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  },
+  "publisher": "MrSIHAB",
+  "exports": "./mod.ts",
+  "readme": "README.md"
 }
