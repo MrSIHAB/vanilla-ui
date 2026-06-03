@@ -4,6 +4,7 @@ import {
   header,
   li,
   link,
+  mark,
   nav,
   Run,
   Text,
@@ -59,6 +60,9 @@ Run(
           }),
         ],
       }),
+      mark({
+        children: Text("Hope everything works fine!"),
+      })
     ],
   }),
 );
