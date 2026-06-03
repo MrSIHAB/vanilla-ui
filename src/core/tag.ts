@@ -1,8 +1,7 @@
-import type { EventHandler } from "./type.ts";
 import { setEventHandlers } from "./eventHandlers.ts";
 
 export type HTMLTagName = keyof HTMLElementTagNameMap;
-export interface TagOptions extends EventHandler {
+export interface TagOptions extends GlobalEventHandlers {
   id?: string;
   class?: string | string[];
   children?: HTMLElement | HTMLElement[];
@@ -72,7 +71,7 @@ export const Tag = <T extends HTMLElement = HTMLElement>(
   }
 
   // set event listeners
-  tag = setEventHandlers(tag, o ?? ({} as EventHandler));
+  tag = setEventHandlers(tag, o ?? ({} as GlobalEventHandlers));
 
   // Let user control the tag
   if (controller) controller(tag);
