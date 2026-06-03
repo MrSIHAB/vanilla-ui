@@ -5,7 +5,7 @@
   "repository": "https://github.com/mrsihab/vanilla-ui",
   "license": "MIT",
   "tasks": {
-    "bundle": "deno bundle main.ts -o build/vanilla-ui.js --platform=browser",
+    "bundle": "deno bundle mod.ts -o build/vanilla-ui.js --platform=browser",
     "dev": "deno task bundle --watch",
     "build": "deno task bundle --minify",
     "check": ""
